@@ -7,6 +7,7 @@
 - grid will be a number value (minimum of 2) which will define the grid size of the game page. 
         
 ## Game page: 
+- cursor will be a small hammer icon (cursor css function);
 - grid of white circles
 - shady figure will pop up at random at a random interval and remain visible for a set duration depening on the difficult (harder will disapear faster)
 - using setTimeout will let me see if the player clicked the mole in time or not. 
