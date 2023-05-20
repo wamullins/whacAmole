@@ -9,7 +9,7 @@ const gameTimer = document.getElementById('gameTimer');
 //// Additional Variables ////
 
 const holeContents = {
-    '-1' : 'BONK!',
+    '-1' : 'BONK',
     '0' : '',
     '1' : 'MOLE!',
 };
@@ -96,8 +96,23 @@ function render() {
 }
 
 function whac(hole) {
-    hole.innerHTML='BONK'
+    if (hole.innerHTML === 'MOLE!') {
+        hole.innerHTML='BONK'
+        bonkCount.innerHTML += 1;
+    }
+    render();
 }
 
+
+function moleUp(row,col) {
+    gameGridArr[row][col]=1;
+    
+    render();
+}
+
+function moleDown(row,col) {
+    gameGridArr[row][col]=0;
+    render();
+}
 //// RUN THE GAME! ////
 init();
