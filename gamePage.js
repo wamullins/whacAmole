@@ -35,7 +35,7 @@ function init() {
     // populates the gameGrid div with divs for each hole with ids detailing where they are on the board
     for (i=0; i<gridSize; i++) {
         for (j=0; j<gridSize; j++) {
-            gameGrid.innerHTML += `<div class='col${j} gameHole' id='row${i}col$'>ROW${i}COL${j}</div>`; 
+            gameGrid.innerHTML += `<div class='gameHole' id='row${i}col${j}'>ROW${i}COL${j}</div>`; 
         }
     }
 
@@ -50,8 +50,17 @@ function init() {
     gameGrid.style.gridTemplateRows = `repeat(${gridSize}, 5rem)`;
     gameGrid.style.gridTemplateColumns = `repeat(${gridSize}, 10rem)`;
 
+    // set event listeners for each of the new holes
+    const gameHoles = document.querySelectorAll('.gameHole');
+
+    gameHoles.forEach(function(hole) {
+        hole.addEventListener('click', () => whac(hole));
+    })
 }
 
+function whac(hole) {
+    console.log(hole.id);
+}
 
 //// RUN THE GAME! ////
 init();
