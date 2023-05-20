@@ -8,24 +8,27 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Changa&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css" >
-    <title>whacAmole: Menu</title>
+    <title>whacAmole</title>
     <script defer src="menuPage.js"></script>
 </head>
 <body>
     <h1>whac<span id="bigA">A</span>mole</h1>
+    <div id="underline"></div>
     <main>
         <div id="'diffSelArea">
-            <p id="diffLabel">DIfficulty: </p>
-            <input type="radio" id="easy" name="diffSel" value='easy'/>
-            <label for="easy">Easy</label>
-            <input type="radio" id="medium" name="diffSel" value='medium'/>
-            <label for="medium">Medium</label>
-            <input type="radio" id="hard" name="diffSel" value='hard'/>
-            <label for="hard">Hard</label>
+            <p id="diffLabel">Difficulty: </p>
+            <div id="easyHard">
+                <input type="radio" id="easy" name="diffSel" value='easy'/>
+                <label for="easy">Easy</label>
+                <input type="radio" id="medium" name="diffSel" value='medium'/>
+                <label for="medium">Medium</label>
+                <input type="radio" id="hard" name="diffSel" value='hard'/>
+                <label for="hard">Hard</label>
+            </div>
         </div>
-        <label for='grid'>Grid: </label>
-        <input type='number' name='prompt' id='grid' value='4' min='2' max='6'>
+        <label for='gridPrompt'>Grid: </label>
+        <input type='number' name='prompt' id='gridPrompt' value='4' min='2' max='6'>
     </main>
-    <h4 id="playbtn">PLAY</h4>
+    <a id="playBtn" href="gamePage.html">PLAY</a>
 </body>
 </html>
