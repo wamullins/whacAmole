@@ -41,3 +41,13 @@ header {
 #playbtn {
     color:#A1A1A1;
 }
+
+#gameGrid {
+    display: grid;
+    grid-gap: 1rem;
+}
+
+#gameGrid > div {
+    width: 10rem;
+    height: 5rem;
+}
