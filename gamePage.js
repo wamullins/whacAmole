@@ -8,6 +8,13 @@ const gameTimer = document.getElementById('gameTimer');
 
 //// Additional Variables ////
 
+const holeContents = {
+    '-1' : 'BONK!',
+    '0' : '',
+    '1' : 'MOLE!',
+};
+
+
 let chosenDiff = sessionStorage.getItem('chosenDiff');
 console.log(chosenDiff);
 
@@ -15,7 +22,7 @@ let gridSize = parseInt(sessionStorage.getItem('gridSize'));
 console.log(gridSize);
 
 let bonks;
-let gameGridArr;
+let gameGridArr=[];
 
 
 //// Event Listeners ////
@@ -26,10 +33,21 @@ function init() {
     bonks = 0;
     //CITATION: array constructor https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Array
     // creates an array with h and w dimensions based on the grid input from the menu
-    let gameGridline = Array(gridSize);
-    gameGridline.fill(0);
-    gameGridArr = Array(gridSize);
-    gameGridArr.fill(gameGridline);
+    
+    // let gameGridline = new Array(gridSize).fill(0);
+    // gameGridArr = new Array(gridSize).fill(gameGridline);
+   
+    /// THIS ABOVE AREA WAS CAUSING ALL KINDS OF WEIRD ISSUES WITH INDEXING LATER ON. SWITCHING TO A NESTED FOR LOOP
+
+    for (i=0; i<gridSize; i++) {
+        let gridline = [];
+        for (j=0;j<4;j++) {
+            gridline.push(0);
+        }
+        gameGridArr.push(gridline);
+    }
+
+    gameGridArr[3][3] = 1;
     console.log(gameGridArr);   
 
     // populates the gameGrid div with divs for each hole with ids detailing where they are on the board
@@ -56,10 +74,29 @@ function init() {
     gameHoles.forEach(function(hole) {
         hole.addEventListener('click', () => whac(hole));
     })
+
+
+    testArray = [[0,0,0],[0,0,0],[0,0,0]];
+    console.log(testArray);
+    testArray[0][0] = 1;
+    console.log(testArray);
+
+    render();
+}
+
+function render() {
+    // very similar to the connect 4 game //
+    gameGridArr.forEach(function(rowArray, rowIndex) {
+        rowArray.forEach(function(cell, colIndex) {
+            let cellId = `row${rowIndex}col${colIndex}`;
+            let cellSpace = document.getElementById(cellId);
+            cellSpace.innerHTML = holeContents[cell];
+        })
+    })
 }
 
 function whac(hole) {
-    console.log(hole.id);
+    hole.innerHTML='BONK'
 }
 
 //// RUN THE GAME! ////

@@ -51,9 +51,9 @@ header {
     width: 10rem;
     height: 4rem;
     color:black;
-    background-color: grey;
+    background-color: gray;
     border-radius: 50%;
-    border-top: 1rem solid #A9A9A9;
+    border-top: .8rem solid #A9A9A9;
     border-style: solid;
     border-color: #A9A9A9;
 }
