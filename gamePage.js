@@ -21,7 +21,7 @@ console.log(chosenDiff);
 let gridSize = parseInt(sessionStorage.getItem('gridSize'));
 console.log(gridSize);
 
-let bonks;
+let bonks = 0;
 let gameGridArr=[];
 
 
@@ -30,7 +30,6 @@ let gameGridArr=[];
 //// Functions ////
 
 function init() {
-    bonks = 0;
     //CITATION: array constructor https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Array
     // creates an array with h and w dimensions based on the grid input from the menu
     
@@ -45,10 +44,7 @@ function init() {
             gridline.push(0);
         }
         gameGridArr.push(gridline);
-    }
-
-    gameGridArr[3][3] = 1;
-    console.log(gameGridArr);   
+    }  
 
     // populates the gameGrid div with divs for each hole with ids detailing where they are on the board
     for (i=0; i<gridSize; i++) {
@@ -75,11 +71,9 @@ function init() {
         hole.addEventListener('click', () => whac(hole));
     })
 
-
-    testArray = [[0,0,0],[0,0,0],[0,0,0]];
-    console.log(testArray);
-    testArray[0][0] = 1;
-    console.log(testArray);
+    // CITATION: setInverval work - https://developer.mozilla.org/en-US/docs/Web/API/setInterval
+    const popUpsIntervalID = setInterval(moleUpRandom, 3000);
+    //might need to make this it's own function when i'm passing in difficulty to adjust the time. Making this it's own function will also allow me to have the interval be a range rather than a set value. 
 
     render();
 }
@@ -98,16 +92,21 @@ function render() {
 function whac(hole) {
     if (hole.innerHTML === 'MOLE!') {
         hole.innerHTML='BONK'
-        bonkCount.innerHTML += 1;
+        //need to index cell to make the bonk happen (because of the render function) and to make the mole go down will need to call moleDown. will need to set timers on bonk (-1) so that it shows up with render at least once at . May need to do some asynchronous function stuff. 
+        bonks += 1;
+        bonkCount.innerHTML = bonks;
     }
     render();
 }
 
 
-function moleUp(row,col) {
-    gameGridArr[row][col]=1;
-    
+
+function moleUpRandom() {
+    let rowCor = Math.floor(Math.random()*4);
+    let colCor = Math.floor(Math.random()*4);
+    gameGridArr[rowCor][colCor]=1;
     render();
+    setTimeout(moleDown, 3000, rowCor, colCor);
 }
 
 function moleDown(row,col) {
