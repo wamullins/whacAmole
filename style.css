@@ -21,8 +21,12 @@ main {
 }
 
 header {
+    width: 80vw;
     display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
+
 #underline {
     width: 18rem;
     height: .4rem;

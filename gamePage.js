@@ -8,8 +8,10 @@ const gameTimer = document.getElementById('gameTimer');
 
 //// Additional Variables ////
 
+
+/// can add additoinal options for moles of varrying point values
 const holeContents = {
-    '-1' : 'BONK',
+    '-1': 'BONK',
     '0' : '',
     '1' : 'MOLE!',
 };
@@ -23,6 +25,7 @@ console.log(gridSize);
 
 let bonks = 0;
 let gameGridArr=[];
+bonkCount.innerHTML = bonks;
 
 
 //// Event Listeners ////
@@ -30,23 +33,23 @@ let gameGridArr=[];
 //// Functions ////
 
 function init() {
+    ////////////////// Weird array issues //////////////////
     //CITATION: array constructor https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Array
     // creates an array with h and w dimensions based on the grid input from the menu
-    
     // let gameGridline = new Array(gridSize).fill(0);
     // gameGridArr = new Array(gridSize).fill(gameGridline);
-   
     /// THIS ABOVE AREA WAS CAUSING ALL KINDS OF WEIRD ISSUES WITH INDEXING LATER ON. SWITCHING TO A NESTED FOR LOOP
+    ////////////////// ////////////////// ////////////////// 
 
     for (i=0; i<gridSize; i++) {
         let gridline = [];
-        for (j=0;j<4;j++) {
+        for (j=0;j<gridSize;j++) {
             gridline.push(0);
         }
         gameGridArr.push(gridline);
     }  
 
-    // populates the gameGrid div with divs for each hole with ids detailing where they are on the board
+    // populates the gameGrid div with divs for each hole with ids detailing where they are on the board // can probably combine this with the top for loop, but keeping it seperate for now to keep things more clear. 
     for (i=0; i<gridSize; i++) {
         for (j=0; j<gridSize; j++) {
             gameGrid.innerHTML += `<div class='gameHole' id='row${i}col${j}'>ROW${i}COL${j}</div>`; 
@@ -72,8 +75,12 @@ function init() {
     })
 
     // CITATION: setInverval work - https://developer.mozilla.org/en-US/docs/Web/API/setInterval
-    const popUpsIntervalID = setInterval(moleUpRandom, 3000);
-    //might need to make this it's own function when i'm passing in difficulty to adjust the time. Making this it's own function will also allow me to have the interval be a range rather than a set value. 
+    // every 3 secodns a mole will pop up. Need to make this number random 
+    // const popUpsIntervalID = setInterval(moleUpRandom, 3000);
+
+
+    // this function is now responsible to causing a mole to pop up at a random interval
+    popUpInterval();
 
     render();
 }
@@ -89,24 +96,43 @@ function render() {
     })
 }
 
+function popUpInterval() {
+    let testTime = Math.floor(Math.random()*2000)+500;
+    setTimeout(moleUpRandom,testTime);
+    console.log(`Time between mole appearence is ${testTime}`)
+}
+
 function whac(hole) {
-    if (hole.innerHTML === 'MOLE!') {
+    holeRow = hole.id[3];
+    holeCol = hole.id[7];
+    console.log(`You clicked row ${holeRow} and col ${holeCol}`);
+
+    if (gameGridArr[holeRow][holeCol] === 1) {
         hole.innerHTML='BONK'
-        //need to index cell to make the bonk happen (because of the render function) and to make the mole go down will need to call moleDown. will need to set timers on bonk (-1) so that it shows up with render at least once at . May need to do some asynchronous function stuff. 
+        gameGridArr[holeRow][holeCol] = -1;
         bonks += 1;
         bonkCount.innerHTML = bonks;
+        render();
     }
-    render();
 }
 
 
 
 function moleUpRandom() {
-    let rowCor = Math.floor(Math.random()*4);
-    let colCor = Math.floor(Math.random()*4);
+    // CITATION: how to use .random together with .floor https://www.w3schools.com/js/js_random.asp
+    let rowCor = Math.floor(Math.random()*gridSize);
+    let colCor = Math.floor(Math.random()*gridSize);
     gameGridArr[rowCor][colCor]=1;
     render();
-    setTimeout(moleDown, 3000, rowCor, colCor);
+
+
+    // if (difficulty = medium... etc.) change the stuff around the moleDownTimer
+
+    // mole will appear for somewhere between 1 and 3 seconds;
+    let moleDownTimer = Math.floor(Math.random()*2000)+1000;
+    console.log(moleDownTimer);
+    setTimeout(moleDown, moleDownTimer, rowCor, colCor);
+    popUpInterval();
 }
 
 function moleDown(row,col) {
