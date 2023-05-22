@@ -103,6 +103,7 @@ function popUpInterval() {
 }
 
 function whac(hole) {
+    // this will give the coordinates of which hole was clicked so that the gameGridArr can be properly changed and not conflict with the render functionss
     holeRow = hole.id[3];
     holeCol = hole.id[7];
     console.log(`You clicked row ${holeRow} and col ${holeCol}`);
@@ -115,8 +116,6 @@ function whac(hole) {
         render();
     }
 }
-
-
 
 function moleUpRandom() {
     // CITATION: how to use .random together with .floor https://www.w3schools.com/js/js_random.asp
