@@ -14,6 +14,7 @@ const holeContents = {
     '-1': 'BONK',
     '0' : '',
     '1' : 'MOLE!',
+    '2' : 'GOLD!!!'
 };
 
 
@@ -26,7 +27,7 @@ console.log(gridSize);
 let bonks = 0;
 let gameGridArr=[];
 bonkCount.innerHTML = bonks;
-let timeLeft = 10;
+let timeLeft = 60;
 
 
 //// Event Listeners ////
@@ -107,20 +108,30 @@ function whac(hole) {
     holeCol = hole.id[7];
     console.log(`You clicked row ${holeRow} and col ${holeCol}`);
     if (gameGridArr[holeRow][holeCol] === 1 && timeLeft>0) {
-        hole.innerHTML='BONK'
         gameGridArr[holeRow][holeCol] = -1;
         bonks += 1;
-        bonkCount.innerHTML = bonks;
-        render();
+    } else if (gameGridArr[holeRow][holeCol] === 2 && timeLeft>0) {
+        gameGridArr[holeRow][holeCol] = -1;
+        bonks += 5;
     }
+    bonkCount.innerHTML = bonks;
+    render();
 }
 
 function moleUpRandom() {
     // CITATION: how to use .random together with .floor https://www.w3schools.com/js/js_random.asp
     let rowCor = Math.floor(Math.random()*gridSize);
     let colCor = Math.floor(Math.random()*gridSize);
-    gameGridArr[rowCor][colCor]=1;
+
+    //set possibility for the golden mole and leave room for additional mole figures. 10% chance for golden mole to appear. 
+    let moleProbRoller = Math.random();
+    if (moleProbRoller>=0.90) {
+        gameGridArr[rowCor][colCor]=2;
+    } else {
+        gameGridArr[rowCor][colCor]=1;
+    }
     
+
     // if (difficulty = medium... etc.) change the stuff around the moleDownTimer
     let moleDownTimer;
     switch(chosenDiff) {
