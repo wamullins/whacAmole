@@ -9,12 +9,12 @@ const gameTimer = document.getElementById('gameTimer');
 //// Additional Variables ////
 
 
-/// can add additoinal options for moles of varrying point values
+/// can add additoinal options for moles of varrying point values. 
 const holeContents = {
     '-1': 'BONK',
     '0' : '',
     '1' : 'MOLE!',
-    '2' : 'GOLD!!!'
+    '5' : 'GOLD!!!'
 };
 
 
@@ -107,15 +107,14 @@ function whac(hole) {
     holeRow = hole.id[3];
     holeCol = hole.id[7];
     console.log(`You clicked row ${holeRow} and col ${holeCol}`);
-    if (gameGridArr[holeRow][holeCol] === 1 && timeLeft>0) {
+
+    if (gameGridArr[holeRow][holeCol] > 0 && timeLeft>0) {
+        bonks += parseInt(gameGridArr[holeRow][holeCol])
         gameGridArr[holeRow][holeCol] = -1;
-        bonks += 1;
-    } else if (gameGridArr[holeRow][holeCol] === 2 && timeLeft>0) {
-        gameGridArr[holeRow][holeCol] = -1;
-        bonks += 5;
+        bonkCount.innerHTML = bonks;
+        render();
     }
-    bonkCount.innerHTML = bonks;
-    render();
+    
 }
 
 function moleUpRandom() {
@@ -126,7 +125,7 @@ function moleUpRandom() {
     //set possibility for the golden mole and leave room for additional mole figures. 10% chance for golden mole to appear. 
     let moleProbRoller = Math.random();
     if (moleProbRoller>=0.90) {
-        gameGridArr[rowCor][colCor]=2;
+        gameGridArr[rowCor][colCor]=5;
     } else {
         gameGridArr[rowCor][colCor]=1;
     }

@@ -18,6 +18,8 @@ h1 {
 main {
     color:#A1A1A1;
     width: 22rem;
+    display: flex;
+    flex-direction: column;
 }
 
 header {
@@ -25,6 +27,19 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+/* CITATION: https://stackoverflow.com/questions/4641752/css-how-to-style-a-selected-radio-buttons-label how to hide the radio checkbox and change the styling on the selected button*/
+input[type="radio"] {
+    display: none;
+}
+
+input[type="radio"]:checked+label {
+    color: white;
+}
+
+a {
+    text-decoration: none;
 }
 
 #underline {
@@ -38,12 +53,38 @@ header {
     margin: .1rem; 
 }
 
-#diffSelArea {
-    display: flex;
+#diffLabel {
+    
 }
 
-#playbtn {
+#diffSelArea {
+    display: flex;
+    align-items: center;
+}
+
+#easyHard {
+    color: #444444;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#playBtn {
     color:#A1A1A1;
+}
+
+#playBtn:hover {
+    color: white;
+}
+
+#menuBtn {
+    color:#A1A1A1;
+    background-color: #222222;
+    
+}
+
+#menuBtn:hover {
+    color: white;
 }
 
 #gameGrid {

@@ -15,7 +15,7 @@
     <h1>whac<span id="bigA">A</span>mole</h1>
     <div id="underline"></div>
     <main>
-        <div id="'diffSelArea">
+        <div id="diffSelArea">
             <p id="diffLabel">Difficulty: </p>
             <div id="easyHard">
                 <input type="radio" id="easy" name="diffSel" value='easy'/>
@@ -26,8 +26,10 @@
                 <label for="hard">Hard</label>
             </div>
         </div>
-        <label for='gridPrompt'>Grid: </label>
-        <input type='number' name='prompt' id='gridPrompt' value='4' min='2' max='6'>
+        <div id="gridPrompArea">
+            <label for='gridPrompt'>Grid: </label>
+            <input type='number' name='prompt' id='gridPrompt' value='4' min='2' max='6'>
+        </div>
     </main>
     <a id="playBtn" href="gamePage.html">PLAY</a>
 </body>
