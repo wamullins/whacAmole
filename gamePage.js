@@ -26,6 +26,7 @@ console.log(gridSize);
 let bonks = 0;
 let gameGridArr=[];
 bonkCount.innerHTML = bonks;
+let timeLeft = 10;
 
 
 //// Event Listeners ////
@@ -73,15 +74,12 @@ function init() {
     gameHoles.forEach(function(hole) {
         hole.addEventListener('click', () => whac(hole));
     })
-
-    // CITATION: setInverval work - https://developer.mozilla.org/en-US/docs/Web/API/setInterval
-    // every 3 secodns a mole will pop up. Need to make this number random 
-    // const popUpsIntervalID = setInterval(moleUpRandom, 3000);
-
+    
+    // display the 60s at the very beginning
+    gameTimer.innerHTML = `${timeLeft}s`
 
     // this function is now responsible to causing a mole to pop up at a random interval
     popUpInterval();
-
     render();
 }
 
@@ -97,9 +95,10 @@ function render() {
 }
 
 function popUpInterval() {
-    let testTime = Math.floor(Math.random()*2000)+500;
-    setTimeout(moleUpRandom,testTime);
-    console.log(`Time between mole appearence is ${testTime}`)
+    //moles will pop up between .25 and 2 seconds
+    let popUpTime = Math.floor(Math.random()*1750)+250;
+    console.log(`Next mole in ${popUpTime} seconds`);
+    setTimeout(moleUpRandom,popUpTime);
 }
 
 function whac(hole) {
@@ -107,8 +106,7 @@ function whac(hole) {
     holeRow = hole.id[3];
     holeCol = hole.id[7];
     console.log(`You clicked row ${holeRow} and col ${holeCol}`);
-
-    if (gameGridArr[holeRow][holeCol] === 1) {
+    if (gameGridArr[holeRow][holeCol] === 1 && timeLeft>0) {
         hole.innerHTML='BONK'
         gameGridArr[holeRow][holeCol] = -1;
         bonks += 1;
@@ -122,21 +120,64 @@ function moleUpRandom() {
     let rowCor = Math.floor(Math.random()*gridSize);
     let colCor = Math.floor(Math.random()*gridSize);
     gameGridArr[rowCor][colCor]=1;
-    render();
-
-
+    
     // if (difficulty = medium... etc.) change the stuff around the moleDownTimer
+    let moleDownTimer;
+    switch(chosenDiff) {
+        case 'easy':
+            //between 1.5 and 4 seconds
+            moleDownTimer = Math.floor(Math.random()*2500)+1500;
+            break;
+        case 'medium':
+            //between 1 and 2 seconds
+            moleDownTimer = Math.floor(Math.random()*1000)+1000;
+            break;
+        case 'hard':
+            //between .25 and 1 seconds
+            moleDownTimer = Math.floor(Math.random()*750)+250;
+            break;
+    }
 
-    // mole will appear for somewhere between 1 and 3 seconds;
-    let moleDownTimer = Math.floor(Math.random()*2000)+1000;
-    console.log(moleDownTimer);
-    setTimeout(moleDown, moleDownTimer, rowCor, colCor);
-    popUpInterval();
+    console.log(`Difficulty: ${chosenDiff} -  Mole up for ${moleDownTimer} seconds`);
+
+    if (timeLeft>0) {
+        render();
+        setTimeout(moleDown, moleDownTimer, rowCor, colCor);
+        popUpInterval(); 
+    }
+     
 }
 
 function moleDown(row,col) {
     gameGridArr[row][col]=0;
     render();
 }
+
+function gameTimerCountDown() {
+    timeLeft -= 1;
+    gameTimer.innerHTML = `${timeLeft}s `;
+    checkClock();
+}
+
+function checkClock() {
+    if (timeLeft<=0) {
+        clearInterval(gameTimerGoing);
+        ///popUp menu code goes here
+
+        setTimeout(allMolesEndGame, 3000);
+    }
+}
+ 
+function allMolesEndGame() {
+    for (i=0; i<gridSize; i++) {
+        for (j=0;j<gridSize;j++) {
+            gameGridArr[i][j] = 1;
+            render();
+        }
+    }
+}
+
 //// RUN THE GAME! ////
+// CITATION: setInverval work - https://developer.mozilla.org/en-US/docs/Web/API/setInterval
+const gameTimerGoing = setInterval(gameTimerCountDown, 1000);
 init();
