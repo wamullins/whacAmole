@@ -12,14 +12,8 @@ const gameOver = document.getElementById('gameover');
 const holeContents = {
     '-1': 'BONK',
     '0' : '',
-    '1' : `<svg class="mole" width="107" height="117" viewBox="0 0 107 117" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M85 74.5385C85 98.2159 67.6483 116 55.5 116C43.3517 116 46.2061 117.703 46.2061 94.0257C46.2061 70.3482 26.859 38 39.0073 38C51.1555 38 85 50.8611 85 74.5385Z" fill="#444444"/>
-    <path d="M83 28.628C83 51.4894 78.3389 25.3353 65.0125 25.3353C51.6861 25.3353 31.6697 27.4996 31.6697 4.63826C29.0373 -9.94376 34.1373 14.5163 47.4637 14.5163C60.7901 14.5163 70 9 83 28.628Z" fill="#444444"/>
-    <path d="M30.7593 29.5C30.7593 41.7126 51.2838 58 65.2376 58C79.1915 58 72.1283 50.11 72.1283 37.8974C72.1283 25.6848 94.351 8.99998 80.3972 8.99998C66.4433 8.99998 12.4132 26 30.7593 29.5Z" fill="#444444"/>
-    <path d="M107 77.9422C107 102.118 88.6551 64.1874 79.2869 64.1874C69.9188 64.1874 58 91.5087 58 67.333C58 43.1572 61.0826 46.1142 70.4507 46.1142C79.8189 46.1142 107 53.7665 107 77.9422Z" fill="#444444"/>
-    <path d="M1.26245e-07 69.9422C1.26245e-07 94.118 18.3449 56.1874 27.7131 56.1874C37.0812 56.1874 49 83.5087 49 59.333C49 35.1572 45.9174 38.1143 36.5493 38.1143C27.1811 38.1143 1.26245e-07 45.7665 1.26245e-07 69.9422Z" fill="#444444"/>
-    </svg>`,
-    '5' : 'GOLD!!!'
+    '1' : '<img class="mole" src="mole.png"/>',
+    '5' : '<img class="mole" src="goldenMole.png"/>'
 };
 
 
@@ -164,7 +158,7 @@ function moleUpRandom() {
 }
 
 function moleDown(row,col) {
-    if (timeLeft<=0) {return;}
+    if (timeLeft<=0) {return;} // this will cause the function to stop immediatly if there isn't time left on the clock.
 
     gameGridArr[row][col]=0;
     render();
@@ -181,7 +175,7 @@ function checkClock() {
         clearInterval(gameTimerGoing);
         
         //this adds the hidden class to 
-        
+
 
         //this removes the hidden class from the gameOver screen which then allows it to transition onto the page
         gameOver.classList = [];

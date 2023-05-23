@@ -49,7 +49,8 @@ a {
 }
 
 .mole {
-    transform: translateY(-15%);
+    height: 3.3rem;
+    transform: translateY(9%);
 }
 
 .menuBtn {
@@ -109,7 +110,7 @@ a {
     color:black;
     background-color: gray;
     border-radius: 50%;
-    border-top: .8rem solid #A9A9A9;
+    border-top: .8rem;
     border-style: solid;
     border-color: #A9A9A9;
     display: flex;
