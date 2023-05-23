@@ -20,6 +20,7 @@ main {
     width: 22rem;
     display: flex;
     flex-direction: column;
+    margin: 2rem 0 2rem 0;
 }
 
 header {
@@ -96,7 +97,6 @@ a {
     display: flex;
     align-items: center;
     height: 10rem;
-    margin-top: 2rem;
 }
 
 #easyHard {
