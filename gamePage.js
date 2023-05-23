@@ -189,11 +189,13 @@ function checkClock() {
  
 function allMolesEndGame() {
     for (i=0; i<gridSize; i++) {
+        let alt = (i%2) ? 1 : -1;
         for (j=0;j<gridSize;j++) {
-            gameGridArr[i][j] = 1;
-            render();
+            gameGridArr[i][j] = alt === 1 ? 1: 5;
+            alt = alt*-1;
         }
     }
+    render();
 }
 
 //// RUN THE GAME! ////
