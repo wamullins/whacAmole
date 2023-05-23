@@ -25,6 +25,7 @@ main {
 
 header {
     width: 80vw;
+    height: 15vh;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -154,12 +155,21 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
     border: solid .1rem #A9A9A9;
 }
 
 #timesUpText > p {
     font-size: 10vw;
+}
+
+#finalScoreText {
+    height: 8rem;
+}
+
+#finalScore {
+    font-size: 4rem;
+    color: gold;
 }
 
 #playAgainText {
@@ -193,17 +203,19 @@ a {
     /* https://www.geeksforgeeks.org/how-to-center-an-element-using-positionfixed-in-css/# */
     left: 50%;
     top: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%,-60%);
     animation-name: gameOver;
     animation-duration: 0.5s;
 }
 /*CITATION on specificity https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity */
-#gameover.hidden{
+#gameover.hidden,
+#topMenuBtn.hidden,
+#bonkText.hidden {
     display: none;
 }
 
 @keyframes gameOver {
     0% {transform: translate(-50%,30%)}
-    60% {transform: translate(-50%,-60%)}
-    100% {transform: translate(-50%,-50%)}
+    60% {transform: translate(-50%,-70%)}
+    100% {transform: translate(-50%,-60%)}
 }

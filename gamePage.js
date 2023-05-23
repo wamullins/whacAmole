@@ -1,9 +1,11 @@
 //// grab everything DOM ////
 const topMenuBtn = document.getElementById('topMenuBtn');
+const bonkText = document.getElementById('bonkText');
 const bonkCount = document.getElementById('bonkCount');
 const gameGrid = document.getElementById('gameGrid');
 const gameTimer = document.getElementById('gameTimer');
 const gameOver = document.getElementById('gameover');
+const finalScore = document.getElementById('finalScore');
 
 //// Additional Variables ////
 
@@ -26,7 +28,7 @@ console.log(gridSize);
 let bonks = 0;
 let gameGridArr=[];
 bonkCount.innerHTML = bonks;
-let timeLeft = 60;
+let timeLeft = 5;
 
 
 //// Event Listeners ////
@@ -174,11 +176,13 @@ function checkClock() {
     if (timeLeft<=0) {
         clearInterval(gameTimerGoing);
         
-        //this adds the hidden class to 
-
+        //this adds the hidden class to both the top menu button and the bonk text (both in the header)
+        topMenuBtn.setAttribute('class', 'hidden');
+        bonkText.setAttribute('class','hidden');
 
         //this removes the hidden class from the gameOver screen which then allows it to transition onto the page
         gameOver.classList = [];
+        finalScore.innerHTML = bonks;
         setTimeout(allMolesEndGame, 3000);
     }
 }
