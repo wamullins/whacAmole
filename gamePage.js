@@ -26,7 +26,7 @@ console.log(gridSize);
 let bonks = 0;
 let gameGridArr=[];
 bonkCount.innerHTML = bonks;
-let timeLeft = 3;
+let timeLeft = 60;
 
 
 //// Event Listeners ////
@@ -158,7 +158,7 @@ function moleUpRandom() {
 }
 
 function moleDown(row,col) {
-    if (timeLeft<=0) {return;} // this will cause the function to stop immediatly if there isn't time left on the clock.
+    if (timeLeft<=0) {return;} // citation on guard clause https://learningactors.com/javascript-guard-clauses-how-you-can-refactor-conditional-logic/
 
     gameGridArr[row][col]=0;
     render();
