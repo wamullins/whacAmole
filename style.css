@@ -48,13 +48,34 @@ a {
     background-color: white;
 }
 
+.mole {
+    transform: translateY(-15%);
+}
+
+.menuBtn {
+    background-color: #222222;
+    height: 2.5rem;
+    width: 6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menuBtn > a {
+    color:#A1A1A1;
+}
+
+.menuBtn > a:hover {
+    color: white;
+}
+
 #bigA {
     font-size:8rem;
     margin: .1rem; 
 }
 
 #diffLabel {
-    
+    margin-right: 1rem;
 }
 
 #diffSelArea {
@@ -77,16 +98,6 @@ a {
     color: white;
 }
 
-#menuBtn {
-    color:#A1A1A1;
-    background-color: #222222;
-    
-}
-
-#menuBtn:hover {
-    color: white;
-}
-
 #gameGrid {
     display: grid;
     grid-gap: 1rem;
@@ -101,4 +112,68 @@ a {
     border-top: .8rem solid #A9A9A9;
     border-style: solid;
     border-color: #A9A9A9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#timesUpText {
+    background-color: #222222;
+    height: 7rem;
+    width: 45vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 3rem;
+    border: solid .1rem #A9A9A9;
+}
+
+#timesUpText > p {
+    font-size: 10vw;
+}
+
+#playAgainText {
+    background-color: #222222;
+    height: 5rem;
+    width: 17rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: .5rem;
+}
+
+#playAgainText >a {
+    font-size: 3rem;
+    color: #A1A1A1;
+}
+
+#playAgainText >a:hover {
+    color: white;
+}
+
+#gameover {
+    width: 60vw;
+    height: 70vh;
+    background-color: #0f0f0fc7;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* https://www.geeksforgeeks.org/how-to-center-an-element-using-positionfixed-in-css/# */
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    animation-name: gameOver;
+    animation-duration: 0.5s;
+}
+/*CITATION on specificity https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity */
+#gameover.hidden{
+    display: none;
+}
+
+@keyframes gameOver {
+    0% {transform: translate(-50%,30%)}
+    60% {transform: translate(-50%,-60%)}
+    100% {transform: translate(-50%,-50%)}
 }

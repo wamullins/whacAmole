@@ -13,10 +13,15 @@
 </head>
 <body>
     <header>
-        <a id="menuBtn" href="menuPage.html">Menu</a>
+        <div id="topMenuBtn" class="menuBtn"><a href="menuPage.html">Menu</a></div>
         <p id="bonkText">BONK: <span id="bonkCount"></span></p>
     </header>
     <div id="gameGrid"></div>
     <div id="timerText">TIME: <span id="gameTimer"></span></div>
+    <div id="gameover" class="hidden">
+        <div id="timesUpText"><p>TIME'S UP</p></div>
+        <div id="playAgainText"><a href="gamePage.html">Play Again?</a></div>
+        <div class="menuBtn"><a href="menuPage.html">Menu</a></div>
+    </div>
 </body>
 </html>
