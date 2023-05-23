@@ -10,7 +10,7 @@ const gameOver = document.getElementById('gameover');
 
 /// can add additoinal options for moles of varrying point values. 
 const holeContents = {
-    '-1': 'BONK',
+    '-1': '<img class="bonkImage" src="bonk.png"/>',
     '0' : '',
     '1' : '<img class="mole" src="mole.png"/>',
     '5' : '<img class="mole" src="goldenMole.png"/>'
