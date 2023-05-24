@@ -29,8 +29,10 @@ console.log(gridSize);
 let bonks = 0;
 let gameGridArr=[];
 bonkCount.innerHTML = bonks;
-let timeLeft = 60;
+let timeLeft = 10;
 
+// this is used to allow the goldenmole to move around randomly in the postgame
+let wanderXY = [0,0];
 
 //// Event Listeners ////
 
@@ -186,19 +188,49 @@ function checkClock() {
         //this removes the hidden class from the gameOver screen which then allows it to transition onto the page
         gameOver.classList = [];
         finalScore.innerHTML = bonks;
-        setTimeout(allMolesEndGame, 3000);
+        
+        // setTimeout(allMolesEndGame, 3000);
+        setInterval(allMolesEndGame, 2000);
+        
     }
 }
- 
+
+
+
 function allMolesEndGame() {
     for (i=0; i<gridSize; i++) {
         let alt = (i%2) ? 1 : -1;
         for (j=0;j<gridSize;j++) {
-            gameGridArr[i][j] = alt === 1 ? 1: 5;
+            gameGridArr[i][j] = alt === 1 ? 1: -3;
             alt = alt*-1;
         }
     }
+    wanderGoldEndGame();
     render();
+}
+
+function wanderGoldEndGame() {
+    
+    let xyProb = [0,0];
+
+    for (i=0; i<xyProb.length; i++ ) {
+        xyProb[i] = Math.floor(Math.random()*6)+1;
+        console.log(xyProb[i]);
+
+        if (wanderXY[i] > 0 && wanderXY[i] < (gridSize-1)) {
+            if (xyProb[i] <= 2) {
+                wanderXY[i] -= 1;
+            } else if (xyProb[i] >= 4) {
+                wanderXY[i] += 1;
+            }
+        } else {
+            if (xyProb[i] <= 3) {
+                wanderXY[i] = wanderXY[i] === 0 ? wanderXY[i] + 1 : wanderXY[i] - 1;
+            }
+        }
+    }
+    console.log(wanderXY);
+    gameGridArr[wanderXY[0]][wanderXY[1]] = 5;
 }
 
 //// RUN THE GAME! ////
@@ -207,15 +239,4 @@ const gameTimerGoing = setInterval(gameTimerCountDown, 1000);
 init();
 
 
-
-//// END GAME PATTERNS ////
-
-////// CHECKER //////
-// for (i=0; i<gridSize; i++) {
-//     let alt = (i%2) ? 1 : -1;
-//     for (j=0;j<gridSize;j++) {
-//         gameGridArr[i][j] = alt === 1 ? 1: 5;
-//         alt = alt*-1;
-//     }
-// }
 
