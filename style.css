@@ -63,8 +63,8 @@ a {
 }
 
 .goldenMole {
-    height: 4.3rem;
-    transform: translate(4%,16%);
+    height: 4.1rem;
+    transform: translate(4.2%,19.5%);
 }
 
 .spikeMole {
@@ -148,8 +148,8 @@ a {
     width: 10rem;
     height: 4rem;
     color:black;
-    background: radial-gradient(ellipse at top, gray, transparent),
-                radial-gradient(ellipse at bottom, black, transparent);
+    background: radial-gradient(ellipse at top, rgb(128, 128, 128), transparent),
+                radial-gradient(ellipse at bottom, black, rgb(128, 128, 128));
     border-radius: 50%;
     border-top: .8rem;
     border-style: solid;
