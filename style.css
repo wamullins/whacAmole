@@ -62,6 +62,16 @@ a {
     transform: translateY(9%);
 }
 
+.goldenMole {
+    height: 4.3rem;
+    transform: translate(4%,16%);
+}
+
+.spikeMole {
+    height: 5.2rem;
+    transform: translateY(-13%);
+}
+
 .bonkImage {
     height: 6rem;
     transform: translateY(-4%);
@@ -138,7 +148,8 @@ a {
     width: 10rem;
     height: 4rem;
     color:black;
-    background-color: gray;
+    background: radial-gradient(ellipse at top, gray, transparent),
+                radial-gradient(ellipse at bottom, black, transparent);
     border-radius: 50%;
     border-top: .8rem;
     border-style: solid;
@@ -207,6 +218,7 @@ a {
     animation-name: gameOver;
     animation-duration: 0.5s;
 }
+
 /*CITATION on specificity https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity */
 #gameover.hidden,
 #topMenuBtn.hidden,

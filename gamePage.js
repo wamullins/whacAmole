@@ -12,10 +12,11 @@ const finalScore = document.getElementById('finalScore');
 
 /// can add additoinal options for moles of varrying point values. 
 const holeContents = {
+    '-3': '<img class="spikeMole" src="spikeMole.png"/>',
     '-1': '<img class="bonkImage" src="bonk.png"/>',
     '0' : '',
     '1' : '<img class="mole" src="mole.png"/>',
-    '5' : '<img class="mole" src="goldenMole.png"/>'
+    '5' : '<img class="goldenMole" src="goldenMole.png"/>'
 };
 
 
@@ -28,7 +29,7 @@ console.log(gridSize);
 let bonks = 0;
 let gameGridArr=[];
 bonkCount.innerHTML = bonks;
-let timeLeft = 5;
+let timeLeft = 60;
 
 
 //// Event Listeners ////
@@ -109,7 +110,7 @@ function whac(hole) {
     holeCol = hole.id[7];
     console.log(`You clicked row ${holeRow} and col ${holeCol}`);
 
-    if (gameGridArr[holeRow][holeCol] > 0 && timeLeft>0) {
+    if ((gameGridArr[holeRow][holeCol] > 0 || gameGridArr[holeRow][holeCol] < -1) && timeLeft>0) {
         bonks += parseInt(gameGridArr[holeRow][holeCol])
         gameGridArr[holeRow][holeCol] = -1;
         bonkCount.innerHTML = bonks;
@@ -123,10 +124,12 @@ function moleUpRandom() {
     let rowCor = Math.floor(Math.random()*gridSize);
     let colCor = Math.floor(Math.random()*gridSize);
 
-    //set possibility for the golden mole and leave room for additional mole figures. 10% chance for golden mole to appear. 
+    //set possibility for the golden mole and leave room for additional mole figures. 10% chance for golden mole to appear. 20% chance for spikeMole
     let moleProbRoller = Math.random();
-    if (moleProbRoller>=0.90) {
+    if (moleProbRoller >= 0.90) {
         gameGridArr[rowCor][colCor]=5;
+    } else if (moleProbRoller < 0.90 && moleProbRoller >= 0.70) {
+        gameGridArr[rowCor][colCor]=-3;
     } else {
         gameGridArr[rowCor][colCor]=1;
     }
@@ -202,3 +205,17 @@ function allMolesEndGame() {
 // CITATION: setInverval work - https://developer.mozilla.org/en-US/docs/Web/API/setInterval
 const gameTimerGoing = setInterval(gameTimerCountDown, 1000);
 init();
+
+
+
+//// END GAME PATTERNS ////
+
+////// CHECKER //////
+// for (i=0; i<gridSize; i++) {
+//     let alt = (i%2) ? 1 : -1;
+//     for (j=0;j<gridSize;j++) {
+//         gameGridArr[i][j] = alt === 1 ? 1: 5;
+//         alt = alt*-1;
+//     }
+// }
+
