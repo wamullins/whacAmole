@@ -29,7 +29,7 @@ console.log(gridSize);
 let bonks = 0;
 let gameGridArr=[];
 bonkCount.innerHTML = bonks;
-let timeLeft = 10;
+let timeLeft = 30;
 
 // this is used to allow the goldenmole to move around randomly in the postgame
 let wanderXY = [0,0];
@@ -213,10 +213,10 @@ function wanderGoldEndGame() {
     
     let xyProb = [0,0];
 
+    // two probability values for x and y, both somewehre between 1 and 6 (inclusive). if either coordinate of the current location on the mole (wanderXY) is on the edge if will not allow the mole to move further in that direction
+
     for (i=0; i<xyProb.length; i++ ) {
         xyProb[i] = Math.floor(Math.random()*6)+1;
-        console.log(xyProb[i]);
-
         if (wanderXY[i] > 0 && wanderXY[i] < (gridSize-1)) {
             if (xyProb[i] <= 2) {
                 wanderXY[i] -= 1;
@@ -229,7 +229,6 @@ function wanderGoldEndGame() {
             }
         }
     }
-    console.log(wanderXY);
     gameGridArr[wanderXY[0]][wanderXY[1]] = 5;
 }
 
