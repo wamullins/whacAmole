@@ -1,11 +1,21 @@
 body {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    height: 100vh;
     font-family: 'Changa', sans-serif;
-    background-color: black;
+    background: linear-gradient( rgb(20, 32, 11),rgb(15, 12, 10));
+    justify-content: center;
+    align-items: center;
     color: white;
     font-size: 2rem;
+}
+
+#menuMoles {
+    display: flex;
+    height: 30vh;
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
 }
 
 h1 {
@@ -42,7 +52,7 @@ input[type="radio"]:checked+label {
 
 input[type="number"] {
     color: white;
-    background-color: black;
+    background: transparent;
     border: none;
     font-size: 1.7rem;
 }
@@ -55,6 +65,21 @@ a {
     height: 2rem;
     display: flex;
     align-items: center;
+}
+
+.menuMole {
+    height: 3.96rem;
+    transform: translate(-1%,9%);
+}
+
+.menuSpike {
+    height: 6.24rem;
+    transform: translate(1%,-12%);
+}
+
+.menuGolden {
+    height: 4.92rem;
+    transform: translate(3.7%,19.5%);
 }
 
 .mole {
@@ -137,6 +162,14 @@ a {
 #playBtn:hover {
     color: white;
     text-decoration: underline;
+}
+
+/*  */
+#gameScreen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
 }
 
 #gameGrid {
@@ -222,7 +255,8 @@ a {
 /*CITATION on specificity https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity */
 #gameover.hidden,
 #topMenuBtn.hidden,
-#bonkText.hidden {
+#bonkText.hidden, 
+#timerText.hidden{
     display: none;
 }
 

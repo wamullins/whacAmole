@@ -4,6 +4,7 @@ const bonkText = document.getElementById('bonkText');
 const bonkCount = document.getElementById('bonkCount');
 const gameGrid = document.getElementById('gameGrid');
 const gameTimer = document.getElementById('gameTimer');
+const timerText = document.getElementById('timerText');
 const gameOver = document.getElementById('gameover');
 const finalScore = document.getElementById('finalScore');
 
@@ -29,7 +30,7 @@ console.log(gridSize);
 let bonks = 0;
 let gameGridArr=[];
 bonkCount.innerHTML = bonks;
-let timeLeft = 30;
+let timeLeft = 3;
 
 // this is used to allow the goldenmole to move around randomly in the postgame
 let wanderXY = [0,0];
@@ -184,6 +185,8 @@ function checkClock() {
         //this adds the hidden class to both the top menu button and the bonk text (both in the header)
         topMenuBtn.setAttribute('class', 'hidden');
         bonkText.setAttribute('class','hidden');
+        timerText.setAttribute('class','hidden');
+
 
         //this removes the hidden class from the gameOver screen which then allows it to transition onto the page
         gameOver.classList = [];
