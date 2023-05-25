@@ -1,4 +1,4 @@
-//// grab everything DOM ////
+//////////// DOM ////////////
 const topMenuBtn = document.getElementById('topMenuBtn');
 const bonkText = document.getElementById('bonkText');
 const bonkCount = document.getElementById('bonkCount');
@@ -9,8 +9,7 @@ const timerText = document.getElementById('timerText');
 const gameOver = document.getElementById('gameover');
 const finalScore = document.getElementById('finalScore');
 
-//// Additional Variables ////
-
+//////////// ADDITIONAL VARIABLES ////////////
 
 /// can add additoinal options for moles of varrying point values. 
 const holeContents = {
@@ -33,12 +32,10 @@ let gameGridArr=[];
 bonkCount.innerHTML = bonks;
 let timeLeft = 30;
 
-// this is used to allow the goldenmole to move around randomly in the postgame
+// this is used to allow the goldenMole to move around randomly in the postgame
 let wanderXY = [0,0];
 
-//// Event Listeners ////
-
-//// Functions ////
+//////////// FUNCTIONS ////////////
 
 function init() {
     ////////////////// Weird array issues //////////////////

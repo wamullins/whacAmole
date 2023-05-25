@@ -1,4 +1,4 @@
-//// grab everything DOM ////
+//// DOM ////
 const easyHard = document.querySelectorAll('input[name="diffSel"]');
 const gridPrompt = document.getElementById('gridPrompt');
 const playBtn = document.getElementById('playBtn');
@@ -16,7 +16,6 @@ playBtn.addEventListener('click', () => playGame());
 easyHard.forEach(function(diff) {
     diff.addEventListener('click', () => moleAdjustment(diff));
 })
-
 
 //// Functions ////
 
@@ -53,7 +52,7 @@ function firstMove() {
     setTimeout(secondMove, 3000);
 }
 function secondMove() {
-    menuHoleTwo.style.order = '-1'
+    menuHoleTwo.style.order = '-1';
     setTimeout(thirdMove, 3000);
 }
 function thirdMove() {
