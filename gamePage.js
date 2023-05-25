@@ -2,6 +2,7 @@
 const topMenuBtn = document.getElementById('topMenuBtn');
 const bonkText = document.getElementById('bonkText');
 const bonkCount = document.getElementById('bonkCount');
+const gameScreen = document.getElementById('gameScreen');
 const gameGrid = document.getElementById('gameGrid');
 const gameTimer = document.getElementById('gameTimer');
 const timerText = document.getElementById('timerText');
@@ -30,7 +31,7 @@ console.log(gridSize);
 let bonks = 0;
 let gameGridArr=[];
 bonkCount.innerHTML = bonks;
-let timeLeft = 3;
+let timeLeft = 30;
 
 // this is used to allow the goldenmole to move around randomly in the postgame
 let wanderXY = [0,0];
@@ -100,14 +101,9 @@ function render() {
     })
 }
 
-function popUpInterval() {
-    //moles will pop up between .25 and 2 seconds
-    let popUpTime = Math.floor(Math.random()*1750)+250;
-    console.log(`Next mole in ${popUpTime} seconds`);
-    setTimeout(moleUpRandom,popUpTime);
-}
-
 function whac(hole) {
+    malletTilt();
+
     // this will give the coordinates of which hole was clicked so that the gameGridArr can be properly changed and not conflict with the render functionss
     holeRow = hole.id[3];
     holeCol = hole.id[7];
@@ -122,12 +118,24 @@ function whac(hole) {
     
 }
 
+function malletTilt() {
+    gameScreen.style.cursor = "url('malletDown.png'), auto";
+    setTimeout(() => gameScreen.style.cursor = "url('mallet.png'), auto", 150);
+}
+
+function popUpInterval() {
+    //moles will pop up between .25 and 2 seconds
+    let popUpTime = Math.floor(Math.random()*1750)+250;
+    console.log(`Next mole in ${popUpTime} seconds`);
+    setTimeout(moleUpRandom,popUpTime);
+}
+
 function moleUpRandom() {
     // CITATION: how to use .random together with .floor https://www.w3schools.com/js/js_random.asp
     let rowCor = Math.floor(Math.random()*gridSize);
     let colCor = Math.floor(Math.random()*gridSize);
 
-    //set possibility for the golden mole and leave room for additional mole figures. 10% chance for golden mole to appear. 20% chance for spikeMole
+    //set possibility for the various moles: 10% chance for goldenMole to appear. 20% chance for spikeMole
     let moleProbRoller = Math.random();
     if (moleProbRoller >= 0.90) {
         gameGridArr[rowCor][colCor]=5;
@@ -138,7 +146,7 @@ function moleUpRandom() {
     }
     
 
-    // if (difficulty = medium... etc.) change the stuff around the moleDownTimer
+    // how fast does the mole go back down based on difficulty
     let moleDownTimer;
     switch(chosenDiff) {
         case 'easy':

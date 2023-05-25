@@ -170,6 +170,7 @@ a {
     flex-direction: column;
     align-items: center;
     height: 100vh;
+    cursor: url('mallet.png'), auto;
 }
 
 #gameGrid {
