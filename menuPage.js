@@ -33,16 +33,16 @@ function playGame() {
 function moleAdjustment(diff) {
     switch(diff.id) {
         case 'easy':
-            menuHoleTwo.innerHTML = `<img class="menuMole" src="mole.png"/>`;
-            menuHoleThree.innerHTML = `<img class="menuGolden" src="goldenMole.png"/>`;
+            menuHoleTwo.innerHTML = `<img class="models/menuMole" src="mole.png"/>`;
+            menuHoleThree.innerHTML = `<img class="models/menuGolden" src="goldenMole.png"/>`;
             break;
         case 'medium':
-            menuHoleTwo.innerHTML = `<img class="menuSpike" src="spikeMole.png"/>`;
-            menuHoleThree.innerHTML = `<img class="menuGolden" src="goldenMole.png"/>`;
+            menuHoleTwo.innerHTML = `<img class="models/menuSpike" src="spikeMole.png"/>`;
+            menuHoleThree.innerHTML = `<img class="models/menuGolden" src="goldenMole.png"/>`;
             break;
         case 'hard':
-            menuHoleTwo.innerHTML = `<img class="menuSpike" src="spikeMole.png"/>`;
-            menuHoleThree.innerHTML = `<img class="menuSpike" src="spikeMole.png"/>`;
+            menuHoleTwo.innerHTML = `<img class="models/menuSpike" src="spikeMole.png"/>`;
+            menuHoleThree.innerHTML = `<img class="models/menuSpike" src="spikeMole.png"/>`;
             break;
     }
 }

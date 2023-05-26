@@ -13,11 +13,11 @@ const finalScore = document.getElementById('finalScore');
 
 /// can add additoinal options for moles of varrying point values. 
 const holeContents = {
-    '-3': '<img class="spikeMole" src="spikeMole.png"/>',
-    '-1': '<img class="bonkImage" src="bonk.png"/>',
+    '-3': '<img class="spikeMole" src="models/spikeMole.png"/>',
+    '-1': '<img class="bonkImage" src="models/bonk.png"/>',
     '0' : '',
-    '1' : '<img class="mole" src="mole.png"/>',
-    '5' : '<img class="goldenMole" src="goldenMole.png"/>'
+    '1' : '<img class="mole" src="models/mole.png"/>',
+    '5' : '<img class="goldenMole" src="models/goldenMole.png"/>'
 };
 
 
@@ -79,8 +79,8 @@ function init() {
         hole.addEventListener('click', () => whac(hole));
     })
     
-    // display the 60s at the very beginning
-    gameTimer.innerHTML = `${timeLeft}s`
+    // display the 30s at the very beginning
+    gameTimer.innerHTML = `${timeLeft}s`;
 
     // this function is now responsible to causing a mole to pop up at a random interval
     popUpInterval();
@@ -116,8 +116,8 @@ function whac(hole) {
 }
 
 function malletTilt() {
-    gameScreen.style.cursor = "url('malletDown.png'), auto";
-    setTimeout(() => gameScreen.style.cursor = "url('mallet.png'), auto", 150);
+    gameScreen.style.cursor = "url('models/malletDown.png'), auto";
+    setTimeout(() => gameScreen.style.cursor = "url('models/mallet.png'), auto", 150);
 }
 
 function popUpInterval() {
@@ -197,7 +197,6 @@ function checkClock() {
         gameOver.classList = [];
         finalScore.innerHTML = bonks;
         
-        // setTimeout(allMolesEndGame, 3000);
         setInterval(allMolesEndGame, 2000);
         
     }
@@ -222,7 +221,6 @@ function wanderGoldEndGame() {
     let xyProb = [0,0];
 
     // two probability values for x and y, both somewehre between 1 and 6 (inclusive). if either coordinate of the current location on the mole (wanderXY) is on the edge if will not allow the mole to move further in that direction
-
     for (i=0; i<xyProb.length; i++ ) {
         xyProb[i] = Math.floor(Math.random()*6)+1;
         if (wanderXY[i] > 0 && wanderXY[i] < (gridSize-1)) {

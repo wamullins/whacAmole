@@ -10,14 +10,6 @@ body {
     font-size: 2rem;
 }
 
-#menuMoles {
-    display: flex;
-    height: 30vh;
-    width: 100vw;
-    justify-content: center;
-    align-items: center;
-}
-
 h1 {
     font-size: 4rem;
     font-weight: 400;
@@ -162,6 +154,14 @@ a {
 #playBtn:hover {
     color: white;
     text-decoration: underline;
+}
+
+#menuMoles {
+    display: flex;
+    height: 30vh;
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
 }
 
 /*  */
